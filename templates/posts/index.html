@@ -1,0 +1,39 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% block title %}Blog{% endblock %}
+
+{% block styles %}<link href="{% static 'posts/blog.css' %}" rel="stylesheet">{% endblock %}
+
+{% block content %}
+
+<main class="container">
+  <div class="row g-5 mt-4">
+    <div class="col-md-8">
+      {% for post in posts %}
+      <article class="blog-post">
+        <h2 class="blog-post-title"><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></h2>
+        <p class="blog-post-meta">{{ post.created_at|date:"F j, Y" }} by <a href="#">{{ post.author }}</a></p>
+
+        <!-- <p>{{ post.content|truncatewords:50 }}</p> -->
+        <p>{{ post.subtitle }}</p>
+      </article><!-- /.blog-post -->
+      {% endfor %}
+      <nav class="blog-pagination" aria-label="Pagination">
+        <a class="btn btn-outline-primary" href="#">Older</a>
+        <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+      </nav>
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+        <div class="p-4 mb-3 bg-light rounded">
+          <h4 class="fst-italic">About</h4>
+          <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+{% endblock %}

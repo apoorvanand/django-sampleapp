@@ -1,0 +1,23 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% block title %}Blog{% endblock %}
+
+{% block styles %}<link href="{% static 'posts/blog.css' %}" rel="stylesheet">{% endblock %}
+
+{% block content %}
+
+
+<main class="container">
+    <div class="row g-5 mt-4">
+      <div class="col-md-8">
+<form method="GET" >
+    <div class="input-field">
+        <input type="text" name="q" value="{{ request.GET.q }}" placeholder="Search Here...">
+       <button class="btn" type="submit" name="action">Search</button>
+    </div>
+</form>
+</div>
+</div>
+
+</main>
+{% endblock %}
